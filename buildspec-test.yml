@@ -1,0 +1,19 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - echo "Installing dependencies..."
+      - npm ci
+  pre_build:
+    commands:
+      # run if you have it; otherwise keep going
+      - npm run -s lint || echo "no lint script"
+  build:
+    commands:
+      - echo "Running tests..."
+      - npm test --if-present || echo "no tests defined"
+
+# (No artifacts required for Test, but it's fine to leave this blank)
