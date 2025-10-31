@@ -2,8 +2,16 @@ version: 0.2
 
 phases:
   install:
+    runtime-versions:
+      nodejs: 18
     commands:
-      - npm install
+      - npm ci
   build:
     commands:
+      - echo "Running tests (will not fail if none)"
       - npm test --if-present || echo "no tests defined"
+
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: yes
