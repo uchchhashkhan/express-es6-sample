@@ -1,10 +1,9 @@
 version: 0.2
+
 phases:
   install:
-    runtime-versions:
-      nodejs: 18
     commands:
-      - npm ci
+      - npm install
   build:
     commands:
       - npm test --if-present || echo "no tests defined"
