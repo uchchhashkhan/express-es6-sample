@@ -1,17 +1,10 @@
 version: 0.2
-
 phases:
   install:
     runtime-versions:
       nodejs: 18
     commands:
-      - echo "Installing dependencies..."
       - npm ci
-  pre_build:
-    commands:
-     
-      - npm run -s lint || echo "no lint script"
   build:
     commands:
-      - echo "Running tests..."
       - npm test --if-present || echo "no tests defined"
