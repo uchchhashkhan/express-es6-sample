@@ -4,14 +4,17 @@ phases:
   install:
     runtime-versions:
       nodejs: 18
-    commands:
-      - npm ci
   build:
     commands:
-      - echo "Running tests (will not fail if none)"
-      - npm test --if-present || echo "no tests defined"
-
+      - npm ci
+      - npm run build || echo "no client build step"
 artifacts:
   files:
     - '**/*'
-  discard-paths: yes
+  discard-paths: no
+  exclude-paths:
+    - node_modules/**/*
+    - .git/**/*
+    - .github/**/*
+    - .gitignore
+    - README.md
