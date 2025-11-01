@@ -1,13 +1,16 @@
 version: 0.2
+
 phases:
   install:
+    runtime-versions:
+      nodejs: 18
     commands:
       - npm ci
   build:
     commands:
-      - npm test || true
+      - npm test --if-present
+
 artifacts:
   files:
     - '**/*'
-  base-directory: .
   discard-paths: no
