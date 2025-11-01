@@ -1,10 +1,12 @@
-import express from 'express';
+const express = require('express');
+const app = express();
 
-var router = express.Router();
+const port = process.env.PORT || 3000;
+const host = '0.0.0.0';
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'World' });
+app.use(express.static('public'));
+app.get('/', (req, res) => {
+  res.send('My Student ID is 22393656. Welcome to Express');
 });
 
-export default router;
+app.listen(port, host, () => console.log(`Running on ${host}:${port}`));
