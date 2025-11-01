@@ -29,14 +29,11 @@
   "babel": { "presets": ["@babel/preset-env"] },
   "jest": { "testEnvironment": "node" },
   "scripts": {
-    "start": "node server/index.js",
-    "build": "npm run clean && npm run transpile",
-    "server": "node ./dist-server/bin/www",
-    "dev": "NODE_ENV=development npm run server",
-    "prod": "NODE_ENV=production npm run server",
-    "transpile": "babel ./server --out-dir dist-server",
-    "clean": "rm -rf dist-server",
-    "watch:dev": "nodemon",
+    "build": "rm -rf dist-server && babel ./server --out-dir dist-server",
+    "start:local": "node server/index.js",              
+    "start:prod": "node dist-server/bin/www",           
+    "postinstall": "npm run build",                     
+    "start:eb": "npm run start:prod",                  
     "test": "jest --ci || true"
   }
 }
